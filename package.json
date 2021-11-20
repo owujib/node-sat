@@ -1,0 +1,35 @@
+{
+  "name": "project",
+  "version": "0.1.1",
+  "description": "a simple project for nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owujib/node-sat.git"
+  },
+  "keywords": [
+    "mongo",
+    "mongoose",
+    "api",
+    "web"
+  ],
+  "author": "owujib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/owujib/node-sat/issues"
+  },
+  "homepage": "https://github.com/owujib/node-sat#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
