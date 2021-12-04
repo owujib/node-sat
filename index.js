@@ -5,9 +5,10 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const path = require('path');
 
-// const blogRoutes = require('./routes/api/blog.routes');
+const blogRoutes = require('./routes/api/blog.routes');
 const appRoutes = require('./routes/app.routes');
 const userRoutes = require('./routes/api/user.routes');
+const ApiError = require('./utils/apiError');
 //initialize your express app
 const app = express();
 
@@ -23,12 +24,31 @@ app.use(express.urlencoded({ extended: true }));
 
 //set static files
 app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 //import app routes
 
 //registering routes
 app.use('/', appRoutes);
-// app.use('/api/v1', blogRoutes);
+app.use('/api/v1/blog', blogRoutes);
 app.use('/api/v1/user', userRoutes);
+
+//404 route
+app.all('*', (req, res, next) => {
+  return next(new ApiError('route not found or has been moved', 404));
+});
+
+//global error handler
+app.use((err, req, res, next) => {
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || 'error';
+  res.status(err.statusCode).json({
+    status: err.status,
+    error: err,
+    data: err.message,
+    stack: err.stack,
+  });
+});
+
 //create port or choose evn port
 const PORT = process.env.PORT || 5500;
 
