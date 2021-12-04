@@ -5,8 +5,9 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const path = require('path');
 
-const blogRoutes = require('./routes/api/blog.routes');
+// const blogRoutes = require('./routes/api/blog.routes');
 const appRoutes = require('./routes/app.routes');
+const userRoutes = require('./routes/api/user.routes');
 //initialize your express app
 const app = express();
 
@@ -26,7 +27,8 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 
 //registering routes
 app.use('/', appRoutes);
-app.use('/api/v1', blogRoutes);
+// app.use('/api/v1', blogRoutes);
+app.use('/api/v1/user', userRoutes);
 //create port or choose evn port
 const PORT = process.env.PORT || 5500;
 

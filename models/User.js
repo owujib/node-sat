@@ -4,7 +4,7 @@ const UserSchema = new mongoose.Schema(
   {
     fullname: {
       type: String,
-      required: true,
+      required: [true, 'please input your fullname'],
     },
     email: {
       type: String,
@@ -22,3 +22,7 @@ const UserSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+const User = mongoose.model('User', UserSchema);
+
+module.exports = User;
