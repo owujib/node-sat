@@ -32,8 +32,6 @@ app.use('/api/v1/user', userRoutes);
 //create port or choose evn port
 const PORT = process.env.PORT || 5500;
 
-console.log(process);
-
 // 'mongdb://localhost:27017/blogdb'
 mongoose
   .connect(process.env.MONGO_URI, {
